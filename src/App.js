@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Wrapper from "./components/Wrapper/index";
 import EmployeeCard from "./components/EmployeeCard/index";
 import Form from "./components/SearchForm/index";
-import Button from "./components/Button/index";
+import ButtonAsc from "./components/ButtonAsc/index";
+import ButtonDesc from "./components/ButtonDesc/index";
 import Title from "./components/Title/index";
 import friends from "./friends.json";
 
@@ -11,10 +12,16 @@ class App extends Component {
     friends
   };
 
-  handleButtonClick = event => {
+  handleButtonClickAsc = event => {
     event.preventDefault()
     //console.log("reached btn click, ", this.state.friends)
     this.sortEmployees(this.state.friends)
+  }
+
+  handleButtonClickDesc = event => {
+    event.preventDefault()
+    //console.log("reached btn click, ", this.state.friends)
+    this.sortReverseEmployees(this.state.friends)
   }
 
   sortEmployees = friends => {
@@ -25,7 +32,23 @@ class App extends Component {
       return 0;
      })
      .map(friend => {
-      console.log("friends???", friend)
+      //console.log("friends???", friend)
+      newFriends.push(friend)
+      return friend
+     })
+     this.setState({newFriends})
+     ;
+  }
+
+  sortReverseEmployees = friends => {
+    const newFriends = []
+    friends.sort(function(a, b) {
+      if(a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+      if(a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+      return 0;
+     })
+     .map(friend => {
+      //console.log("friends???", friend)
       newFriends.push(friend)
       return friend
      })
@@ -54,7 +77,8 @@ class App extends Component {
         <Form 
         filterEmployees={this.filterEmployees}
         />
-        <Button handleButtonClick={this.handleButtonClick} >Sort Alphabetically</Button>
+        <ButtonAsc handleButtonClickAsc={this.handleButtonClickAsc} >Sort By Name Alphabetically</ButtonAsc>
+        <ButtonDesc handleButtonClickDesc={this.handleButtonClickDesc} >Reverse Name Alphabetically</ButtonDesc>
         {this.state.friends.map(friend => (
           <EmployeeCard
             id={friend.id}
