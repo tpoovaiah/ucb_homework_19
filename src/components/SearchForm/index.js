@@ -5,11 +5,14 @@ function Form(props) {
     <div className="container">
       <div className="row">
         <div className="col-md-12">
-          <input
-            className="form-control"
-            type="text"
-            placeholder="Search by name"
-          ></input>
+          <form>
+            <input
+              onChange={props.filterEmployees}
+              className="form-control"
+              type="text"
+              placeholder="Search by name"
+            ></input>
+          </form>
         </div>
       </div>
     </div>

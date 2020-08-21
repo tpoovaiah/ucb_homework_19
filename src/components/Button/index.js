@@ -4,7 +4,7 @@ function Button(props) {
   return (
     <div className="container">
       
-      <button type="button" className="btn btn-info">
+      <button type="button" className="btn btn-info" onClick={props.handleButtonClick}>
       {props.children}
     </button>
     
