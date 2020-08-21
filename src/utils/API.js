@@ -1,6 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
 
-// Export an object containing methods we'll use for accessing the Dog.Ceo API
+// // Export an object containing methods we'll use for accessing the Dog.Ceo API
 
 // export default {
 //   getRandomDog: function() {
@@ -14,12 +14,11 @@ import axios from "axios";
 //   }
 // };
 
+
+import axios from "axios";
 export default {
   // Gets all users
-  getAllUsers: function() {
+  getUsers: function() {
     return axios.get("https://randomuser.me/api/?results=20&nat=us");
-  },
-  getUsersGender: function(gender) {
-    return axios.get("https://randomuser.me/api/?results=20&nat=us&gender=" + gender);
   }
 };
